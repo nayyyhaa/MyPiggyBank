@@ -10,4 +10,4 @@ Here I've used the simple concepts of
 - Processing data on user action
 - Bootstraping
 
-you can access the website -> https://yourpiggybank.netlify.app/
+you can access the website -> https://mypiggybank.netlify.app/
