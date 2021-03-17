@@ -35,14 +35,20 @@
                         placeholder="Amount spent"
                         aria-label="Amount spent"
                         aria-describedby="spent in rupee"
+                        required="required"
                     />
                     <div class="input-group-append">
-                        <span class="input-group-text" id="spent in rupee">₹</span>
+                        <span class="input-group-text"
+                        id="spent in rupee">₹</span>
+                    </div>
+                    <div class="invalid-tooltip">
+                        Please check the input
                     </div>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="spent at">@</span>
+                        <span class="input-group-text"
+                        id="spent at">@</span>
                     </div>
                     <input
                         type="text"
@@ -51,9 +57,13 @@
                         placeholder="spent On"
                         aria-label="spent On"
                         aria-describedby="spent at"
+                        required="required"
                     />
                     <div class="input-group-append">
                         <button class="btn btn-outline-primary" type="button" id="btnSelector">Add</button>
+                    </div>
+                    <div class="invalid-tooltip">
+                        Please check the input
                     </div>
                 </div>
             </div>
@@ -83,30 +93,45 @@
         //get table item
         const tableElem=document.querySelector("#tableItem");
         headerElement.textContent=totalExpense;
-
         //create arr
         let arrTotal=[];
         //create increment function
         function addExpense(){
             const textAmount=inputElement.value;
             const textDesc=inputDesc.value;
-            //convert to int
-            const expense=parseInt(textAmount,10);
 
-            //assign to 1 obj
-            const obj={};
-            obj.desc=textDesc;
-            obj.expense=textAmount;
-            obj.moment=new Date();
+            //if textAmount and textDesc isnot empty
+            if(textAmount != "" && textDesc !=""){
+                //remove labels
+                inputElement.classList.remove("is-invalid");
+                inputDesc.classList.remove("is-invalid");
 
-            //assign to array   
-            arrTotal.push(obj); 
+                //convert to int
+                const expense=parseInt(textAmount,10);
+                //assign to 1 obj
 
-            //add to total
-            totalExpense=totalExpense+expense;
-            //set the heading element
-            updateTotal();
-            renderListView(arrTotal);
+                //check of amount is number
+                if(!isNaN(expense)){
+                    const obj={};
+                    obj.desc=textDesc;
+                    obj.expense=textAmount;
+                    obj.moment=new Date();
+
+                    //assign to array   
+                    arrTotal.push(obj); 
+
+                    //add to total
+                    totalExpense=totalExpense+expense;
+                    //set the heading element
+                    updateTotal();
+                    renderListView(arrTotal);
+                    }else {
+                        inputElement.classList.add("is-invalid");
+                    }
+            }else{   
+                inputElement.classList.add("is-invalid");
+                inputDesc.classList.add("is-invalid");
+            }
         }
             
             //console.log(showItemHTML);
