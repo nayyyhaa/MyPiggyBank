@@ -47,6 +47,7 @@
              obj.desc=textDesc;
              obj.expense=textAmount;
              obj.moment=new Date();
+             obj.type=selectedOption;
 
              //assign to array   
              arrTotal.push(obj); 
@@ -95,7 +96,7 @@
         return momento.toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
     }
 
-    function deleteItem(dateString,expense){
+    function deleteItem(dateString,expense,type){
          let newArrList=[];
          for(let i=0;i<arrTotal.length;i++){
              if(arrTotal[i].moment.valueOf()!==dateString){
@@ -103,7 +104,14 @@
              }
          }
          renderListView(newArrList);
-         totalBalance-=expense;
+         console.log(type.value)
+         if(type.value=='incomeType'){
+            totalIncome=totalIncome-expense;
+        }
+        else{
+            totalExpense=totalExpense-expense;
+        }
+         totalBalance=totalIncome-totalExpense;
          updateTotal();
      }
 
@@ -124,7 +132,7 @@
          arrTotal=arrayOfList;
      }
      //view layer
-     function viewTable({ desc, expense, moment }) {
+     function viewTable({ desc, expense, moment,type }) {
          return `
              <li class="list-group-item d-flex justify-content-between">
                      <div class="d-flex flex-column">
@@ -135,10 +143,13 @@
                          <span class="px-5">
                              ${expense}₹
                          </span>
+                         <span class="px-5">
+                             ${type}
+                         </span>
                          <button 
                              type="button" 
                              class="btn btn-outline-danger btn-sm"
-                             onclick="deleteItem(${moment.valueOf()},${expense})"
+                             onclick="deleteItem(${moment.valueOf()},${expense},${type})"
                              >
                              <i class="fas fa-trash-alt"></i>
                          </button>
