@@ -6,28 +6,49 @@
  const headerElement=document.querySelector("#headerItem");
  const headerIncomeElement=document.querySelector("#headerIncome");
  const headerExpenseElement=document.querySelector("#headerExpense");
- document.mainForm.onclick = function(){
- var selectedOption = document.querySelector('input[name = sourceType]:checked').value;
- 
- //get btn element
- const element=document.querySelector("#btnSelector");
- //Listen to click event
- element.addEventListener("click",addExpense(selectedOption),false);
- }
  //get  btn element
   const inputElement=document.querySelector("#inputAmount");
  //get desc
  const inputDesc=document.querySelector("#inputDescp");
  //assign total expense to header
  //get table item
- const tableElem=document.querySelector("#tableItem");
- headerIncomeElement.textContent=totalIncome;
- headerExpenseElement.textContent=totalExpense;
- headerElement.textContent=totalBalance;
+ const tableElem=document.querySelector("#tableItem")
+//get btn element
+ const element=document.querySelector("#btnSelector");
+//  function getRadioVal(form, name) {
+//     var val;
+//     // get list of radio buttons with specified name
+//     var radios = form.elements[name];
+//     //console.log(form.elements[name][0].value)
+//     //loop through list of radio buttons
+//     for (var i=0, len=radios.length; i<len; i++) {
+//         if ( radios[i].checked ) { // radio checked?
+//             val = radios[i].value; // if so, hold its value in val
+//             break; // and break out of for loop
+//         }
+//     }
+//     console.log(val);
+//     return val; // return value of checked radio or undefined if none checked
+
+// }
+// var selectedOption = getRadioVal(document.getElementById('mainForm'), 'sourceType' );
+
+ //Listen to click event
+ //element.addEventListener("click",addExpense);
+ document.mainForm.onsubmit = function(e){
+    e.preventDefault();
+    var selectedOption = document.querySelector('input[name = sourceType]:checked').value;
+    //Listen to click event
+    element.addEventListener("click",addExpense(selectedOption),false);
+ };
+ headerIncomeElement.textContent=`Total Income: ${totalIncome}₹`;
+ headerExpenseElement.textContent=`Total Expense: ${totalExpense}₹`;
+ headerElement.textContent=`Total: ${totalBalance}₹`;
  //create arr
  let arrTotal=[];
  //create increment function
  function addExpense(selectedOption){
+    //e.preventDefault();
      const textAmount=inputElement.value;
      const textDesc=inputDesc.value;
 
