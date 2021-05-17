@@ -1,6 +1,15 @@
 # MyPiggyBank
 Your personal expense app.
 
+#### User has the ability to
+- Store the expense amount
+- Store the income amount
+- Get total balance 
+- Delete any expense/income Amount
+- Visualize expense with date of expense/income generated
+
+This website is created using simple **VanillaJs, HTML & CSS**.
+
 This website is created using VanillaJs.
 Here I've used the simple concepts of 
 - Event Listeners 
@@ -10,4 +19,4 @@ Here I've used the simple concepts of
 - Processing data on user action
 - Bootstraping
 
-you can access the website -> https://mypiggybank.netlify.app/
+## you can access the website -> https://mypiggybank.netlify.app/
