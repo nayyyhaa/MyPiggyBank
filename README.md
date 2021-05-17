@@ -10,7 +10,6 @@ Your personal expense app.
 
 This website is created using simple **VanillaJs, HTML & CSS**.
 
-This website is created using VanillaJs.
 Here I've used the simple concepts of 
 - Event Listeners 
 - Reading input in HTML 
